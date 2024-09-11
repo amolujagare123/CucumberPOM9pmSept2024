@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(features = "Features"
         , glue ="stepdefinitions"
 //,dryRun = true
-        , tags = "@maxAmount"
+        , tags = "@starverify"
         , plugin = {"pretty","html:target/report.html"}
 )
 public class TestRunner {

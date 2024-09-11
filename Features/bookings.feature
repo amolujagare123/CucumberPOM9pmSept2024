@@ -5,7 +5,6 @@ Feature: All bookings.com scenarios
 
 
 
-
 # 1
   @starverify
   Scenario Outline: Verify user can only view the result by selected property class

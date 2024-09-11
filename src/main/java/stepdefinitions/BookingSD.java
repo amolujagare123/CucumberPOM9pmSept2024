@@ -2,11 +2,13 @@ package stepdefinitions;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.junit.Assert;
 import pages.SearchResult;
 
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import static stepdefinitions.SharedSD.getDriver;
 
@@ -66,5 +68,30 @@ public class BookingSD {
         Assert.assertTrue("some hotels pricing is greater than:"
                 +expectedMaxAmount+
                 "\nBelow is the list of greater prices\n"+greaterPriceList,result);
+    }
+
+    @When("I select option for stars as {}")
+    public void iSelectOptionForStarsAs(String star) // 5 stars
+    {
+
+        searchResult.clickStarRating(star.substring(0,1));
+       // searchResult.clickStarRating(star.split(" ")[0]);
+
+    }
+
+    @Then("I verify system displays only {} hotels on search result")
+    public void iVerifySystemDisplaysOnlyHotelsOnSearchResult(String star) {
+
+        int starInt = Integer.parseInt(star.substring(0,1));
+
+        ArrayList<Integer> starList = searchResult.getStarList();
+        System.out.println(starList);
+
+        int frequency = Collections.frequency(starList, starInt);
+        int size = starList.size();
+
+        boolean result = (size==frequency);
+
+        Assert.assertTrue("all hotels are not:"+star,result);
     }
 }
